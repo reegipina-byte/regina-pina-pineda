@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regina Eugenia Piña Pineda — Derecho</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A2E4A;
+    --gold:   #B08D57;
+    --ink:    #1C1C1C;
+    --muted:  #6B7280;
+    --rule:   #D4C9B8;
+    --bg:     #FAF8F5;
+    --white:  #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── LAYOUT ─── */
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    padding: 60px 0 36px;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .header-text h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .header-text .meta {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .header-text .meta a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-text .meta a:hover { color: var(--navy); border-color: var(--navy); }
+
+  .header-photo {
+    width: 110px;
+    height: 138px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 3px;
+    filter: grayscale(8%);
+    box-shadow: 0 4px 20px rgba(26,46,74,0.15);
+  }
+
+  /* ─── PERFIL ─── */
+  .perfil {
+    padding: 32px 0 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 40px;
+  }
+
+  .perfil p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: var(--ink);
+    max-width: 680px;
+    padding-bottom: 32px;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    margin-bottom: 44px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  /* ─── ENTRY ─── */
+  .entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 24px;
+    margin-bottom: 28px;
+  }
+
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-title {
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--navy);
+    grid-column: 1;
+  }
+
+  .entry-date {
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 1px;
+  }
+
+  .entry-sub {
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--muted);
+    grid-column: 1 / 3;
+    margin-top: -4px;
+  }
+
+  .entry-sub-right {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
+    grid-column: 1;
+    margin-top: -4px;
+  }
+
+  .entry-date-sub {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    grid-column: 2;
+    align-self: start;
+    padding-top: 1px;
+    font-style: italic;
+  }
+
+  .entry-loc {
+    font-size: 12.5px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 1px;
+  }
+
+  ul.bullets {
+    list-style: none;
+    grid-column: 1 / 3;
+    margin-top: 6px;
+  }
+
+  ul.bullets li {
+    font-size: 13.5px;
+    color: var(--ink);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  ul.bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* Separator between entries within same org */
+  .entry-group { margin-bottom: 28px; }
+  .entry-group .sub-role {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 24px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+  .sub-role-title {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .sub-role-date {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* ─── SKILLS GRID ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 40px;
+  }
+
+  .skill-row { font-size: 13.5px; }
+  .skill-row strong {
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── IDIOMAS ─── */
+  .lang-row {
+    display: flex;
+    gap: 40px;
+    font-size: 13.5px;
+  }
+  .lang-item strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* ─── INTERESES ─── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── RULE ─── */
+  .rule { border: none; border-top: 1px solid var(--rule); margin: 0 0 40px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 11.5px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    header { grid-template-columns: 1fr; }
+    .header-photo { width: 80px; height: 100px; }
+    .header-text h1 { font-size: 1.9rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .lang-row { flex-direction: column; gap: 8px; }
+    footer { flex-direction: column; gap: 6px; }
+  }
+
+  @media print {
+    body { background: white; font-size: 13px; }
+    .page { padding: 20px 0; }
+    header { padding: 20px 0 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-text">
+      <h1>Regina Eugenia<br>Piña Pineda</h1>
+      <p class="meta">Ciudad de México &nbsp;·&nbsp; <a href="mailto:ree.pinap@gmail.com">ree.pinap@gmail.com</a></p>
+    </div>
+    <img class="header-photo" src="https://i.imgur.com/placeholder.jpg" alt="Regina Eugenia Piña Pineda" onerror="this.style.display='none'">
+  </header>
+
+  <!-- PERFIL -->
+  <div class="perfil">
+    <p>Estudiante de Derecho en el ITAM, próxima a cursar el tercer semestre a partir de agosto de 2026. Interés particular en derecho corporativo, derecho mercantil, <em>business law</em> y solución de controversias. Formación inicial en teoría del derecho, cultura de la legalidad, derecho civil, escritura jurídica e investigación normativa. Perfil orientado al análisis, la redacción argumentativa, el orden documental, la comunicación efectiva y el aprendizaje práctico en despacho.</p>
+  </div>
+
+  <!-- EDUCACIÓN -->
+  <section>
+    <p class="section-label">Educación</p>
+
+    <div class="entry">
+      <span class="entry-title">Instituto Tecnológico Autónomo de México (ITAM)</span>
+      <span class="entry-loc">Ciudad de México</span>
+      <span class="entry-sub-right">Licenciatura en Derecho &nbsp;·&nbsp; Promedio: 8.91</span>
+      <span class="entry-date-sub">agosto 2025 – presente</span>
+    </div>
+
+    <div class="entry">
+      <span class="entry-title">Programa académico internacional — John Abbott College</span>
+      <span class="entry-loc">Montreal, Canadá</span>
+      <span class="entry-sub-right">Formación académica y vida cotidiana en inglés y francés.</span>
+      <span class="entry-date-sub">agosto – diciembre 2024</span>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- EXPERIENCIA -->
+  <section>
+    <p class="section-label">Experiencia</p>
+
+    <div class="entry-group">
+      <div class="entry">
+        <span class="entry-title">Enlace Rural</span>
+        <span class="entry-loc">Ciudad de México</span>
+      </div>
+
+      <div class="sub-role">
+        <span class="sub-role-title">Mesa Directiva — Encargada de la rama de Recursos Humanos</span>
+        <span class="sub-role-date">junio 2026 – presente</span>
+        <ul class="bullets" style="grid-column:1/3">
+          <li>Dirección y supervisión de la rama de Recursos Humanos a nivel organizacional.</li>
+          <li>Gestión y seguimiento de bases de datos de voluntarios e integrantes.</li>
+          <li>Coordinación de procesos de inscripción, registro y comunicación interna.</li>
+        </ul>
+      </div>
+
+      <div class="sub-role">
+        <span class="sub-role-title">Coordinadora de FAP (microproyecto interno)</span>
+        <span class="sub-role-date">enero – junio 2026</span>
+        <ul class="bullets" style="grid-column:1/3">
+          <li>Coordinación integral del proyecto FAP, incluyendo planeación y seguimiento de actividades.</li>
+          <li>Reconocimiento a la Mejor Coordinadora de la Comunidad.</li>
+        </ul>
+      </div>
+
+      <div class="sub-role">
+        <span class="sub-role-title">Voluntaria</span>
+        <span class="sub-role-date">agosto – diciembre 2025</span>
+        <ul class="bullets" style="grid-column:1/3">
+          <li>Atención y seguimiento a dudas de participantes.</li>
+          <li>Organización de información administrativa dentro de una asociación civil con enfoque social.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ACTIVIDADES ACADÉMICAS -->
+  <section>
+    <p class="section-label">Actividades Académicas</p>
+
+    <div class="entry">
+      <span class="entry-title">Model United Nations (MUN)</span>
+      <span></span>
+      <span class="entry-sub">Participación en múltiples simulaciones académicas</span>
+      <ul class="bullets">
+        <li>ITAMUN — INTERPOL, Presidenta. (2026 – en curso)</li>
+        <li>Tecnológico de Monterrey, Campus Estado de México — Conseil de l'Europe, Coordinadora. (enero – abril 2025)</li>
+        <li>Tecnológico de Monterrey, Campus Estado de México — OCHA, Vicepresidenta. (agosto – diciembre 2023)</li>
+        <li>Desarrollo de habilidades de argumentación oral, análisis de posturas, negociación y redacción bajo presión a través de roles de liderazgo en distintos comités.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- HABILIDADES -->
+  <section>
+    <p class="section-label">Habilidades</p>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <strong>Jurídicas</strong>
+        Investigación jurídica · Redacción argumentativa · Análisis e interpretación normativa · Argumentación oral y escrita · Síntesis de textos complejos
+      </div>
+      <div class="skill-row">
+        <strong>Organización</strong>
+        Coordinación de información · Seguimiento de procesos · Atención al detalle · Trabajo en equipo
+      </div>
+      <div class="skill-row">
+        <strong>Herramientas</strong>
+        Microsoft Office · Google Workspace · Canva · Notion · Nociones básicas de Python
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- IDIOMAS -->
+  <section>
+    <p class="section-label">Idiomas</p>
+    <div class="lang-row">
+      <div class="lang-item"><strong>Español</strong> nativo</div>
+      <div class="lang-item"><strong>Inglés</strong> avanzado (uso académico y cotidiano)</div>
+      <div class="lang-item"><strong>Francés</strong> intermedio</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Regina Eugenia Piña Pineda</span>
+    <span>ree.pinap@gmail.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
